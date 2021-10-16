@@ -24,8 +24,10 @@ public interface NguoiDungService {
 	void changePass(NguoiDung nd, String newPass);
 
 	//Page<NguoiDung> getNguoiDungByVaiTro(Set<VaiTro> vaiTro, int page);
+	Page<NguoiDung> getNguoiDungByVaiTro(VaiTro vaiTro, int page);
 
 	//List<NguoiDung> getNguoiDungByVaiTro(Set<VaiTro> vaiTro);
+	List<NguoiDung> getNguoiDungByVaiTro(VaiTro vaiTro);
 	
 	NguoiDung saveUserForAdmin(TaiKhoanDTO dto);
 

@@ -72,11 +72,20 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 //	public Page<NguoiDung> getNguoiDungByVaiTro(Set<VaiTro> vaiTro,  int page) {
 //		return nguoiDungRepo.findByVaiTro(vaiTro, PageRequest.of(page - 1, 6));
 //	}
-
+	@Override
+	public Page<NguoiDung> getNguoiDungByVaiTro(VaiTro vaiTro,  int page) {
+		return nguoiDungRepo.findByVaiTro(vaiTro, PageRequest.of(page - 1, 6));
+	}
+	
+	
 //	@Override
 //	public List<NguoiDung> getNguoiDungByVaiTro(Set<VaiTro> vaiTro) {
 //		return nguoiDungRepo.findByVaiTro(vaiTro);
 //	}
+	@Override
+	public List<NguoiDung> getNguoiDungByVaiTro(VaiTro vaiTro) {
+		return nguoiDungRepo.findByVaiTro(vaiTro);
+	}
 
 	@Override
 	public NguoiDung saveUserForAdmin(TaiKhoanDTO dto) {

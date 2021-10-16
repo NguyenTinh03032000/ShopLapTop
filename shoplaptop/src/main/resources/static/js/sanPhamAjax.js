@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 	// load first when coming page
 	ajaxGet(1);	
-	
+
 	// do get
 	function ajaxGet(page){
 		// prepare data
@@ -15,7 +15,7 @@ $(document).ready(function() {
 			success: function(result){
 				$.each(result.content, function(i, sanPham){
 					var sanPhamRow = '<tr>' +
-					                  '<td>' + '<img src="/laptopshop/img/'+sanPham.id+'.png" class="img-responsive" style="height: 50px; width: 50px" />'+'</td>' +
+					                  '<td>' + '<img src="/laptopshop/images/'+sanPham.id+'.png" class="img-responsive" style="height: 50px; width: 50px" />'+'</td>' +
 					                  '<td>' + sanPham.tenSanPham + '</td>' +
 					                  '<td>' + sanPham.danhMuc.tenDanhMuc + '</td>' +
 					                  '<td>' + sanPham.hangSanXuat.tenHangSanXuat + '</td>' +
@@ -369,7 +369,7 @@ $(document).ready(function() {
     	
     	var href = "http://localhost:8080/laptopshop/api/san-pham/"+sanPhamId;
 		$.get(href, function(sanPham) {
-			$('.hinhAnh').attr("src", "/laptopshop/img/"+sanPham.id+".png");
+			$('.hinhAnh').attr("src", "/laptopshop/images/"+sanPham.id+".png");
 			$('.tenSanPham').html("<span style='font-weight: bold'>Tên sản phẩm: </span> "+ sanPham.tenSanPham);
 			$('.maSanPham').html("<span style='font-weight: bold'> Mã sản phẩm: </span>"+ sanPham.id);
 			$('.hangSangXuat').html("<span style='font-weight: bold'>Hãng sản xuất: </span>"+ sanPham.hangSanXuat.tenHangSanXuat);
@@ -441,7 +441,7 @@ $(document).ready(function() {
 		  var href = "http://localhost:8080/laptopshop/api/san-pham/"+sanPhamId;
 		  $.get(href, function(sanPham) {
 			  var sanPhamRow = '<tr>' +
-              '<td>' + '<img src="/laptopshop/img/'+sanPham.id+'.png" class="img-responsive" style="height: 50px; width: 50px" />'+'</td>' +
+              '<td>' + '<img src="/laptopshop/images/'+sanPham.id+'.png" class="img-responsive" style="height: 50px; width: 50px" />'+'</td>' +
               '<td>' + sanPham.tenSanPham + '</td>' +
               '<td>' + sanPham.danhMuc.tenDanhMuc + '</td>' +
               '<td>' + sanPham.hangSanXuat.tenHangSanXuat + '</td>' +

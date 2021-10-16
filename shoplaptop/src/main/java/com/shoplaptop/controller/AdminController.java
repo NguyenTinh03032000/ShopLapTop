@@ -1,5 +1,6 @@
 package com.shoplaptop.controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -71,10 +72,10 @@ public class AdminController {
 		return "admin/trangAdmin";
 	}
 
-//	@GetMapping("/danh-muc")
-//	public String quanLyDanhMucPage() {
-//		return "admin/quanLyDanhMuc";
-//	}
+	@GetMapping("/danh-muc")
+	public String quanLyDanhMucPage() {
+		return "admin/quanLyDanhMuc";
+	}
 
 	@GetMapping("/nhan-hieu")
 	public String quanLyNhanHieuPage() {
@@ -99,15 +100,15 @@ public class AdminController {
 		return "admin/profile";
 	}
 
-//	@PostMapping("/profile/update")
-//	public String updateNguoiDung(@ModelAttribute NguoiDung nd, HttpServletRequest request) {
-//		NguoiDung currentUser = getSessionUser(request);
-//		currentUser.setDiaChi(nd.getDiaChi());
-//		currentUser.setHoTen(nd.getHoTen());
-//		currentUser.setSoDienThoai(nd.getSoDienThoai());
-//		nguoiDungService.updateUser(currentUser);
-//		return "redirect:/admin/profile";
-//	}
+	@PostMapping("/profile/update")
+	public String updateNguoiDung(@ModelAttribute NguoiDung nd, HttpServletRequest request) {
+		NguoiDung currentUser = getSessionUser(request);
+		currentUser.setDiaChi(nd.getDiaChi());
+		currentUser.setHoTen(nd.getHoTen());
+		currentUser.setSoDienThoai(nd.getSoDienThoai());
+		nguoiDungService.updateUser(currentUser);
+		return "redirect:/admin/profile";
+	}
 
 //	@GetMapping("/don-hang")
 //	public String quanLyDonHangPage(Model model) {
@@ -121,6 +122,18 @@ public class AdminController {
 //		model.addAttribute("allShipper", shippers);
 //		return "admin/quanLyDonHang";
 //	}
+	@GetMapping("/don-hang")
+	public String quanLyDonHangPage(Model model) {
+		//Set<VaiTro> vaiTro = new HashSet<>();
+		// lấy danh sách shipper
+		VaiTro vaiTro = vaiTroService.findByTenVaiTro("ROLE_SHIPPER");
+		List<NguoiDung> shippers = nguoiDungService.getNguoiDungByVaiTro(vaiTro);
+		for (NguoiDung shipper : shippers) {
+			shipper.setListDonHang(donHangService.findByTrangThaiDonHangAndShipper("Đang giao", shipper));
+		}
+		model.addAttribute("allShipper", shippers);
+		return "admin/quanLyDonHang";
+	}
 
 	@GetMapping("/tai-khoan")
 	public String quanLyTaiKhoanPage(Model model) {
@@ -137,6 +150,4 @@ public class AdminController {
 		return (NguoiDung) request.getSession().getAttribute("loggedInUser");
 	}
 	
-	
-
 }
