@@ -38,15 +38,11 @@ public class RegisterController {
 	public String registerProcess(@ModelAttribute("newUser") @Valid NguoiDung nguoiDung, BindingResult bindingResult, Model model) {
 	    
 		nguoiDungValidator.validate(nguoiDung, bindingResult);
-		
         if (bindingResult.hasErrors()) {
             return "client/register";
         }
-        
         nguoiDungService.saveUserForMember(nguoiDung);
-
         securityService.autologin(nguoiDung.getEmail(), nguoiDung.getConfirmPassword());
-
         return "redirect:/";
 	}
 }
